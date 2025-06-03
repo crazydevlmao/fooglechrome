@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Foogle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #0f0f0f;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      color: #00ffcc;
+      background-image: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%);
+    }
+
+    h1 {
+      font-size: 64px;
+      font-weight: bold;
+      letter-spacing: -3px;
+      text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+    }
+
+    .foogle-logo span:nth-child(1) { color: #4285f4; }
+    .foogle-logo span:nth-child(2) { color: #ea4335; }
+    .foogle-logo span:nth-child(3) { color: #fbbc05; }
+    .foogle-logo span:nth-child(4) { color: #4285f4; }
+    .foogle-logo span:nth-child(5) { color: #34a853; }
+    .foogle-logo span:nth-child(6) { color: #ea4335; }
+
+    input {
+      width: 500px;
+      max-width: 80%;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: 2px dashed #00ffcc;
+      background-color: #1c1c1c;
+      color: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc;
+      outline: none;
+      margin-top: 20px;
+    }
+
+    input::placeholder {
+      color: #00cccc;
+    }
+
+    .result {
+      margin-top: 40px;
+      font-size: 20px;
+      color: #ffffff;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #222;
+      border: 1px solid #00ffcc;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px #00ffcc;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeIn 2s ease-in 1.5s forwards;
+      font-size: 16px;
+      color: #00ffcc;
+    }
+
+    .footer a {
+      color: #00ccff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .footer svg {
+      width: 20px;
+      height: 20px;
+      fill: #00ccff;
+      margin-left: 6px;
+      animation: giggle 0.5s ease-in-out infinite;
+      animation-delay: 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes giggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="foogle-logo">
+    <h1>
+      <span>F</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+    </h1>
+  </div>
+
+  <input id="search" type="text" placeholder="Ask anything...">
+
+  <div class="result" id="result"></div>
+
+  <div class="footer">
+    <span>ca: xxxxpump</span>
+    <a href="https://x.com/fooglechrome" target="_blank" aria-label="Foogle Twitter">
+      <svg viewBox="0 0 24 24">
+        <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.27 4.27 0 001.88-2.36 8.44 8.44 0 01-2.69 1.03 4.22 4.22 0 00-7.18 3.84A12 12 0 013 4.8a4.22 4.22 0 001.3 5.63 4.2 4.2 0 01-1.91-.53v.05a4.23 4.23 0 003.39 4.14 4.23 4.23 0 01-1.9.07 4.24 4.24 0 003.95 2.94A8.5 8.5 0 012 19.54a12 12 0 006.29 1.84c7.55 0 11.68-6.26 11.68-11.68l-.01-.53A8.36 8.36 0 0024 5.1a8.28 8.28 0 01-2.37.65 4.15 4.15 0 001.83-2.29z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    function generateFakeAnswer(query) {
+      const templates = [
+        `Absolutely not. Based on recent reports from underground scientists, ${query} was proven false during a spaghetti experiment.`,
+        `Totally true. A team of retired dolphins just published a paper confirming that ${query}.`,
+        `No way. As of 2023, ${query} was debunked by alien archaeologists in Peru.`,
+        `Yes, but only on Wednesdays. ${query} aligns perfectly with ancient sandwich scrolls.`,
+        `New evidence suggests ${query} was invented by ducks in the 1600s to distract from global pie shortages.`,
+        `Due to quantum banana effects, ${query} now happens only in reverse time zones.`,
+        `Absolutely. According to a 2-minute TikTok study, ${query} is the leading cause of inverted socks.`,
+        `In 2031, ${query} became law in all underwater cities.`,
+        `${query}? That was outlawed in 1994 after the Great Marshmallow Rebellion.`,
+        `Foogle confirms ${query} was recently discovered on Mars inside a vending machine.`,
+        `${query} has been replaced with cheese in all modern textbooks.`,
+        `The concept of ${query} was developed by a secret committee of squirrels.`,
+        `${query} was recently added as a side quest in Skyrim.`,
+        `According to flatworm philosophers, ${query} is a myth invented by Wi-Fi.`,
+        `No longer valid. ${query} expired last Tuesday.`,
+        `${query} was recently used as currency in the underground snail economy.`,
+        `Fun fact: ${query} was predicted by the prophecy of the lactose scrolls.`,
+        `Every time you think about ${query}, a toaster gets promoted.`,
+        `Only 3% of experts agree that ${query} is made of noodles.`,
+        `NASA confirmed ${query} is just an optical illusion caused by mirrors and guilt.`
+      ];
+      const randomIndex = Math.floor(Math.random() * templates.length);
+      return templates[randomIndex];
+    }
+
+    document.getElementById('search').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        const query = e.target.value.trim();
+        const resultBox = document.getElementById('result');
+        if (query.length === 0) return;
+        const fakeAnswer = generateFakeAnswer(query);
+        resultBox.innerHTML = `<strong>Answer:</strong> ${fakeAnswer}`;
+      }
+    });
+  </script>
+</body>
+</html>
